@@ -1,32 +1,27 @@
-
 from fizzbuzz.sequence_generator import sequence_generator
 from fizzbuzz.fizzbuzz import fizzbuzz
+import pytest
 
 
 def test_generating_a_sequence():
     assert sequence_generator(1, 100) == range(1, 101)
 
-def test_an_empty_repo():
-    assert True
+
+@pytest.mark.parametrize('number', [1, 2, 4])
+def test_numbers_are_not_replaced_otherwise(number):
+    assert fizzbuzz(number) == number
 
 
-def test_numbers_are_not_replaced_otherwise():
-    assert fizzbuzz(1) == 1
-    assert fizzbuzz(2) == 2
-    assert fizzbuzz(4) == 4
+@pytest.mark.parametrize('number', [3, 6, 9])
+def test_multiples_of_three_produce_fizz(number):
+    assert fizzbuzz(number) == 'fizz'
 
-def test_multiples_of_three_produce_fizz():
-    assert fizzbuzz(3) == 'fizz'
-    assert fizzbuzz(6) == 'fizz'
-    assert fizzbuzz(9) == 'fizz'
 
-def test_15_produce_fizzbuzz():
-    assert fizzbuzz(15) == 'fizzbuzz'
+@pytest.mark.parametrize('number', [5, 10, 20])
+def test_multiples_of_five_produce_buzz(number):
+    assert fizzbuzz(number) == 'buzz'
 
-def test_30_produce_fizzbuzz():
-    assert fizzbuzz(30) == 'fizzbuzz'
 
-def test_any_multiple_of_3_and_5_produce_fizzbuzz():
-    assert fizzbuzz(45) == 'fizzbuzz'
-    assert fizzbuzz(60) == 'fizzbuzz'
-    assert fizzbuzz(90) == 'fizzbuzz'
+@pytest.mark.parametrize('number', [15, 30, 45, 60])
+def test_any_multiple_of_3_and_5_produce_fizzbuzz(number):
+    assert fizzbuzz(number) == 'fizzbuzz'
