@@ -1,4 +1,4 @@
-
+from fizzbuzz.format_list_to_string import format_list_to_string_with_comma
 from fizzbuzz.sequence_generator import sequence_generator
 from fizzbuzz.fizzbuzz import fizzbuzz
 
@@ -30,3 +30,6 @@ def test_any_multiple_of_3_and_5_produce_fizzbuzz():
     assert fizzbuzz(45) == 'fizzbuzz'
     assert fizzbuzz(60) == 'fizzbuzz'
     assert fizzbuzz(90) == 'fizzbuzz'
+
+def test_convert_array_to_comma_delimitted_string():
+    assert format_list_to_string_with_comma([1,2,3,4,5]) == "1,2,3,4,5"
